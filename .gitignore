@@ -1,0 +1,43 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+package-lock.json
+yarn.lock
+
+# production
+/dist
+
+# misc
+.DS_Store
+npm-debug.log*
+**/target
+**/build
+**/.svn
+**/bin/
+**/.classpath
+**/.project
+**/.settings
+**/.springBean
+**/*.iml
+**/*.idea
+**/.externalToolBuilders
+**/test-output
+
+/target
+/build
+/.svn
+/bin/
+/.classpath
+/.project
+/.settings
+/.springBean
+/*.iml
+/*.idea
+/.externalToolBuilders
+/test-output
+
+**/gen-java
+
+deploy.sh
+
