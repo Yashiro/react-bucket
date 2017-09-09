@@ -1,20 +1,20 @@
 import React, {Component} from 'react';
+import {Link} from 'react-router';
 
-class UserAdd extends Component {
-    render () {
+class Home extends Component {
+    
+    render() {
         return (
             <div>
                 <header>
-                    <h1>添加用户</h1>
+                    <h1>Welcome</h1>
                 </header>
                 <main>
-                    <form>
-                        <label></label>
-                    </form>
+                    <Link to="/user/add">添加用户</Link>
                 </main>
             </div>
         );
     }
 }
 
-export default UserAdd;
+export default Home;
