@@ -53,9 +53,10 @@ function formProvider(fields) {
         }
         render() {
             const {form, formValid} = this.state;
-            return <Comp {...this.props} form={form} formValid={formProvider} onFormChange />
+            return <Comp {...this.props} form={form} formValid={formProvider} onFormChange={this.handleValueChange} />
         }
     }
+    return FormComponent;
 }
 
 export default formProvider;
