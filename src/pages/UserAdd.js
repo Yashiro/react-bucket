@@ -31,8 +31,6 @@ class UserAdd extends Component {
                 alert('添加失败!');
             }
         }).catch((err) => console.error(err));
-        
-        alert(JSON.stringify(this.state));
     }
 
     render () {
@@ -50,7 +48,7 @@ class UserAdd extends Component {
                         {!name.valid && <span>{name.error}</span>}
                         <br/>
                         <label>年龄：</label>
-                        <input type="number" value={age.value || ''} onChange={(event) => onFormChange('age', event.target.value, 'number')} />
+                        <input type="number" value={age.value || ''} onChange={(event) => onFormChange('age', event.target.value)} />
                         {!age.valid && <span>{age.error}</span>}
                         <br/>
                         <select value={gender.value} onChange={(event) => onFormChange('gender', event.target.value)} >
@@ -90,7 +88,7 @@ UserAdd = formProvider({
         rules: [
             {
                 pattern: function (value) {
-                    return value >= 1 || value <= 100;
+                    return value >= 1 && value <= 100;
                 },
                 error: '请输入1~100的年龄',
             }
