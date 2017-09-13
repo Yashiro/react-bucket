@@ -22,9 +22,8 @@ function formProvider(fields) {
     
             handleValueChange(fieldName, value) {
                 const {form} = this.state;
-                const fieldState = form[fieldName];
     
-                const newFieldState = {...fieldState, value, valid: true, error:''};
+                const newFieldState = {value, valid: true, error:''};
     
                 const fieldRules = fields[fieldName].rules;
     
@@ -53,7 +52,7 @@ function formProvider(fields) {
             }
             render() {
                 const {form, formValid} = this.state;
-                return <Comp {...this.props} form={form} formValid={formProvider} onFormChange={this.handleValueChange} />
+                return <Comp {...this.props} form={form} formValid={formValid} onFormChange={this.handleValueChange} />
             }
         }
         return FormComponent;
