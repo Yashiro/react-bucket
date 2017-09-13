@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import FormItem from '../components/FormItem';
 import formProvider from '../utils/formProvider';
 
 class UserAdd extends Component {
@@ -43,20 +44,21 @@ class UserAdd extends Component {
                 
                 <main>
                     <form onSubmit={(event) => this.handleSubmit(event)}>
-                        <label>用户名：</label>
-                        <input type="text" value={name.value} onChange={(event) => onFormChange('name', event.target.value)} />
-                        {!name.valid && <span>{name.error}</span>}
+                        <FormItem label="用户名：" valid={name.valid} error={name.error}>
+                            <input type="text" value={name.value} onChange={(event) => onFormChange('name', event.target.value)} />
+                        </FormItem>
                         <br/>
-                        <label>年龄：</label>
-                        <input type="number" value={age.value || ''} onChange={(event) => onFormChange('age', event.target.value)} />
-                        {!age.valid && <span>{age.error}</span>}
+                        <FormItem label="年龄：" valid={age.valid} error={age.error}>
+                            <input type="number" value={age.value || ''} onChange={(event) => onFormChange('age', event.target.value)} />
+                        </FormItem>
                         <br/>
-                        <select value={gender.value} onChange={(event) => onFormChange('gender', event.target.value)} >
-                            <option value=""></option>
-                            <option value="male">男</option>
-                            <option value="female">女</option>
-                        </select>
-                        {!gender.valid && <span>{gender.error}</span>}
+                        <FormItem label="性别" valid={gender.valid} error={gender.error} >
+                            <select value={gender.value} onChange={(event) => onFormChange('gender', event.target.value)} >
+                                <option value=""></option>
+                                <option value="male">男</option>
+                                <option value="female">女</option>
+                            </select>
+                        </FormItem>
                         <br/>
                         <br/>
                         <input type="submit" value="提交" />

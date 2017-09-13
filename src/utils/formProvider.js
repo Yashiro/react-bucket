@@ -8,8 +8,8 @@ function formProvider(fields) {
             initialFormState[key] = {
                 value: fields[key].defaultValue,
                 error: ''
-            }
-        };
+            };
+        }
         class FormComponent extends Component {
             constructor(props) {
                 super(props);
