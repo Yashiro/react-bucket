@@ -6,7 +6,7 @@
   "scripts": {
     "server": "cd server && json-server db.json -w -p 3000",
     "start": "roadhog server",
-    "build": "babel src -d build"
+    "build": "babel src -d build -s"
   },
   "dependencies": {
     "react": "^15.4.2",
