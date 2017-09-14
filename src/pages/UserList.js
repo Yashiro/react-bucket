@@ -80,4 +80,8 @@ class UserList extends Component {
     }
 }
 
+UserList.contextTypes = {
+    router: React.PropTypes.object.isRequired
+};
+
 export default UserList;
