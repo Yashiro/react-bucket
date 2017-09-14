@@ -19,7 +19,7 @@ class UserList extends Component {
     }
 
     handleEdit(user) {
-
+        this.context.router.push('/user/edit/' + user.id);
     }
 
     handleDel(user) {
