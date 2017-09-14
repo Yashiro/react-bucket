@@ -17,6 +17,28 @@ class UserList extends Component {
             });
         });
     }
+
+    handleEdit(user) {
+
+    }
+
+    handleDel(user) {
+        const confirmed = confirm(`确定要删除用户 ${user.name} ?`);
+
+        if (confirmed) {
+            fetch('http://localhost:3000/user/' + user.id, {
+                method: 'DELETE'
+            }).then(res => res.json()).then(res => {
+                this.state({
+                    userList: this.state.userList.filter(item => item.id !== user.id)
+                });
+                alert('删除成功');
+            }).catch(err => {
+                console.error(err);
+                alert('删除失败');
+            });
+        }
+    }
     
     render() {
         const {userList} = this.state;
@@ -29,6 +51,7 @@ class UserList extends Component {
                             <th>用户名</th>
                             <th>性别</th>
                             <th>年龄</th>
+                            <th>操作</th>
                         </tr>
                     </thead>
 
@@ -41,6 +64,11 @@ class UserList extends Component {
                                         <td>{user.name}</td>
                                         <td>{user.gender}</td>
                                         <td>{user.age}</td>
+                                        <td>
+                                            <a href="javascript:void(0)" onClick={() => this.handleEdit(user)}>编辑</a>
+                                            &nbsp;
+                                            <a href="javascript:void(0)" onClick={() => this.handleDel(user)}>删除</a>
+                                        </td>
                                     </tr>
                                 );
                             })
