@@ -28,6 +28,7 @@ class UserAdd extends Component {
             // 所以可以使用res.id来判断添加是否成功
             if (res.id) {
                 alert('添加成功 ID=' + res.id);
+                this.context.router.push('/user/list')
             } else {
                 alert('添加失败!');
             }
@@ -68,6 +69,12 @@ class UserAdd extends Component {
         );
     }
 }
+
+// 必须给UserAdd定义一个包含router属性的contextTypes
+// 使得组件中可以通过this.context.router来使用React Router提供的方法
+UserAdd.contextTypes = {
+    router: React.PropTypes.object.isRequired
+};
 
 UserAdd = formProvider({
     name: {
