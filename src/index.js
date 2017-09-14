@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import {Router, Route, hashHistory} from 'react-router';
+import { Router, Route, hashHistory } from 'react-router';
 import UserAddPage from './pages/UserAdd';
 import HomePage from './pages/Home';
 import UserList from './pages/UserList';

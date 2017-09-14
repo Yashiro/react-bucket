@@ -29,7 +29,7 @@ class UserList extends Component {
             fetch('http://localhost:3000/user/' + user.id, {
                 method: 'DELETE'
             }).then(res => res.json()).then(res => {
-                this.state({
+                this.setState({
                     userList: this.state.userList.filter(item => item.id !== user.id)
                 });
                 alert('删除成功');

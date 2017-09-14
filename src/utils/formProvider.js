@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 
 function formProvider(fields) {
-    return function (Comp) {
+    return function(Comp) {
 
         const initialFormState = {};
         for (const key in fields) {
