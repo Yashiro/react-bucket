@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, hashHistory } from 'react-router';
 import HomePage from './pages/Home';
-import UserAddPage from './pages/UserAdd';
 import UserListPage from './pages/UserList';
+import UserAddPage from './pages/UserAdd';
 import UserEditPage from './pages/UserEdit';
 
 ReactDOM.render((
