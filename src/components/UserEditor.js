@@ -7,7 +7,7 @@ class UserEditor extends Component {
     componentWillMount() {
         const {editTarget, setFormValues} = this.props;
         if (editTarget) {
-            setFormValues(editTarget)
+            setFormValues(editTarget);
         }
     }
     
@@ -44,7 +44,8 @@ class UserEditor extends Component {
             // 所以可以使用res.id来判断添加是否成功
             if (res.id) {
                 alert(editType + ' ID=' + res.id + ' 成功!');
-                this.context.router.push('/user/list')
+                this.context.router.push('/user/list');
+                return;
             } else {
                 alert(editType + '失败!');
             }
