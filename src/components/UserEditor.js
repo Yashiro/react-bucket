@@ -30,7 +30,7 @@ class UserEditor extends Component {
         }
         
         fetch(apiUrl, {
-            method,
+            method: method,
             body: JSON.stringify({
                 name: name.value,
                 age: age.value,
