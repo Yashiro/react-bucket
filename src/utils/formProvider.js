@@ -28,7 +28,7 @@ function formProvider(fields) {
 
                 const {form} = this.state;
                 let newForm = {...form};
-                for (var field in form) {
+                for (const field in form) {
                     if (form.hasOwnProperty(field)) {
                         if (typeof values[field] !== 'undefined') {
                             newForm[field] = {...newForm[field], value: values[field]}
@@ -42,8 +42,9 @@ function formProvider(fields) {
     
             handleValueChange(fieldName, value) {
                 const {form} = this.state;
+                const fieldState = form[fieldName];
     
-                const newFieldState = {value, valid: true, error:''};
+                const newFieldState = {...fieldState, value, valid: true, error:''};
     
                 const fieldRules = fields[fieldName].rules;
     
