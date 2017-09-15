@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import HomeLayout from '../layouts/HomeLayout';
+import constants from '../common/constants';
 
 class UserList extends Component {
 
@@ -11,7 +12,7 @@ class UserList extends Component {
     }
 
     componentWillMount() {
-        fetch('http://localhost:3000/user').then(res => res.json()).then(res => {
+        fetch(constants.uri + constants.colon + constants.port + '/user').then(res => res.json()).then(res => {
             this.setState({
                 userList: res
             });
@@ -26,7 +27,7 @@ class UserList extends Component {
         const confirmed = confirm(`确定要删除用户 ${user.name} ?`);
 
         if (confirmed) {
-            fetch('http://localhost:3000/user/' + user.id, {
+            fetch(constants.uri + constants.colon + constants.port + '/user/' + user.id, {
                 method: 'DELETE'
             }).then(res => res.json()).then(res => {
                 this.setState({

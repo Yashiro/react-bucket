@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import formProvider from '../utils/formProvider';
 import FormItem from '../components/FormItem';
+import constants from '../common/constants';
 
 class UserEditor extends Component {
 
@@ -21,7 +22,7 @@ class UserEditor extends Component {
         }
 
         let editType = '添加';
-        let apiUrl = 'http://localhost:3000/user';
+        let apiUrl = constants.uri + constants.colon + constants.port + '/user';
         let method = 'POST';
         if (editTarget) {
             editType = '编辑';
