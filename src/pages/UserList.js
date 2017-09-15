@@ -12,7 +12,7 @@ class UserList extends Component {
     }
 
     componentWillMount() {
-        fetch(constants.uri + constants.colon + constants.port + '/user').then(res => res.json()).then(res => {
+        fetch(constants.uri + ":" + constants.port + '/user').then(res => res.json()).then(res => {
             this.setState({
                 userList: res
             });
@@ -27,7 +27,7 @@ class UserList extends Component {
         const confirmed = confirm(`确定要删除用户 ${user.name} ?`);
 
         if (confirmed) {
-            fetch(constants.uri + constants.colon + constants.port + '/user/' + user.id, {
+            fetch(constants.uri + ":" + constants.port + '/user/' + user.id, {
                 method: 'DELETE'
             }).then(res => res.json()).then(res => {
                 this.setState({
