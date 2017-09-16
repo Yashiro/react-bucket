@@ -3,7 +3,6 @@ import HomeLayout from '../layouts/HomeLayout';
 import constants from '../common/constants';
 
 class UserList extends Component {
-
     constructor(props) {
         super(props);
         this.state = {

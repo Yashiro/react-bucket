@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import FormItem from './FormItem';
 import formProvider from '../utils/formProvider';
 
-class componentName extends Component {
+class BookEditor extends Component {
 
     componentWillMount() {
         const {editTarget, setFormValues} = this.props;
@@ -118,4 +118,4 @@ BookEditor = formProvider({
     }
 })(BookEditor);
 
-export default componentName;
+export default BookEditor;
