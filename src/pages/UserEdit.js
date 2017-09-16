@@ -13,7 +13,7 @@ class UserEdit extends Component {
 
     componentWillMount() {
         const userId = this.context.router.params.id;
-        fetch(constants.uri + ":" + constants.port + '/user/' + userId).then(res => res.json()).then(res => {
+        fetch(constants.uri + ':' + constants.port + '/user/' + userId).then(res => res.json()).then(res => {
             this.setState({
                 user: res
             });

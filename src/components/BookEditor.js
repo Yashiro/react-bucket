@@ -22,7 +22,7 @@ class BookEditor extends Component {
         }
 
         let editType = '添加';
-        let apiUrl = constants.uri + ":" + constants.port + '/book';
+        let apiUrl = constants.uri + ':' + constants.port + '/book';
         let method = 'POST';
         if (editTarget) {
             editType = '编辑';

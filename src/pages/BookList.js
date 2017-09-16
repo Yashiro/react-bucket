@@ -11,7 +11,7 @@ class BookList extends Component {
       }
     
       componentWillMount () {
-        fetch(constants.uri + ":" + constants.port + '/book')
+        fetch(constants.uri + ':' + constants.port + '/book')
           .then(res => res.json())
           .then(res => {
             this.setState({
@@ -28,7 +28,7 @@ class BookList extends Component {
         const confirmed = confirm(`确定要删除图书 ${book.name} 吗？`);
     
         if (confirmed) {
-          fetch(constants.uri + ":" + constants.port + '/book/' + book.id, {
+          fetch(constants.uri + ':' + constants.port + '/book/' + book.id, {
             method: 'DELETE'
           })
             .then(res => res.json())

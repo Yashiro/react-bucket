@@ -22,7 +22,7 @@ class UserEditor extends Component {
         }
 
         let editType = '添加';
-        let apiUrl = constants.uri + ":" + constants.port + '/user';
+        let apiUrl = constants.uri + ':' + constants.port + '/user';
         let method = 'POST';
         if (editTarget) {
             editType = '编辑';
