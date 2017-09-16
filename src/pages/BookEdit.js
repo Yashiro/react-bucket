@@ -11,18 +11,23 @@ class BookEdit extends Component {
         };
     }
 
-    
     componentWillMount() {
         const bookId = this.context.router.params.id;
-        fetch(constants.uri + ":" + constants.port + "")
+        fetch(constants.uri + ':' + constants.port + '/book/' + bookId).then(res => res.json()).then(res => {
+            this.setState({
+                book: res
+            });
+        });
     }
     
-    
     render() {
+        const {book} = this.state;
         return (
-            <div>
-                
-            </div>
+            <HomeLayout>
+                {
+                    book ? <BookEditor editTarget={book} /> : '加载中...'
+                }
+            </HomeLayout>
         );
     }
 }
