@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import FormItem from './FormItem';
 import formProvider from '../utils/formProvider';
+import constants from '../common/constants';
 
 class BookEditor extends Component {
 
@@ -42,7 +43,7 @@ class BookEditor extends Component {
         }).then((res) => res.json()).then((res) => {
             if (res.id) {
                 alert(editType + ' ID=' + res.id + ' 成功!');
-                this.context.router.push('/user/list');
+                this.context.router.push('/book/list');
                 return;
             } else {
                 alert(editType + '失败!');
@@ -61,7 +62,7 @@ class BookEditor extends Component {
                     <input type="number" value={price.value || ''} onChange={(event) => onFormChange('price', event.target.value)} />
                 </FormItem>
                 <FormItem label="所有者：" valid={owner_id.valid} error={owner_id.error}>
-                    <input type="number" value={owner_id.value || ''} onChange={(event) => ('owner_id', event.target.value)} />
+                    <input type="number" value={owner_id.value || ''} onChange={(event) => onFormChange('owner_id', event.target.value)} />
                 </FormItem>
                 <br/>
                 <input type="submit" value="提交" />

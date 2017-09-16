@@ -6,6 +6,7 @@ import UserListPage from './pages/UserList';
 import UserAddPage from './pages/UserAdd';
 import UserEditPage from './pages/UserEdit';
 import BookListPage from './pages/BookList';
+import BookAddPage from './pages/BookAdd';
 
 ReactDOM.render((
     <Router history={hashHistory}>
@@ -14,5 +15,6 @@ ReactDOM.render((
         <Route path="/user/add" component={UserAddPage} />
         <Route path="/user/edit/:id" component={UserEditPage} />
         <Route path="/book/list" component={BookListPage} />
+        <Route path="/book/add" component={BookAddPage} />
     </Router>
 ), document.getElementById('app'));
