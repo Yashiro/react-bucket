@@ -11,7 +11,7 @@ class BookList extends Component {
       }
     
       componentWillMount () {
-        fetch('/book')
+        fetch(constants.uri + ":" + constants.port + '/book')
           .then(res => res.json())
           .then(res => {
             this.setState({
