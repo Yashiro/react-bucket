@@ -2,8 +2,17 @@ import React, { Component } from 'react';
 import FormItem from './FormItem';
 import formProvider from '../utils/formProvider';
 import constants from '../common/constants';
+import AutoComplete from '../components/AutoComplete';
 
 class BookEditor extends Component {
+    // AutoComplete Code
+    constructor(props) {
+        super(props);
+        this.state = {
+            recommendUsers: []
+        };
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
 
     componentWillMount() {
         const {editTarget, setFormValues} = this.props;
@@ -51,7 +60,43 @@ class BookEditor extends Component {
         }).catch((err) => console.error(err));
     }
 
+    // AutoComplete Code Begin
+    getRecommendUsers(partialUserId) {
+        fetch(constants.uri + ':' + constants.port + '/user?id_like=' + partialUserId).then((res) => res.json()).then((res) => {
+            if (res.length === 1 && res[0].id === partialUserId) {
+                return;
+            }
+            this.setState({
+                recommendUsers: res.map((user) =>{
+                    return {
+                        text: `${user.id} (${user.name})`,
+                        value: user.id
+                    }
+                })
+            });
+        });
+    }
+
+    timer = 0;
+    handleOwnerIdChange(value) {
+        this.props.onFormChange('owner_id', value);
+        this.setState({
+            recommendUsers: []
+        });
+        if (this.timer) {
+            clearTimeout(this.timer);
+        }
+        if (value) {
+            this.timer = setTimeout(() => {
+                this.getRecommendUsers(value);
+                this.timer = 0;
+            }, 200);
+        }
+    }
+    // AutoComplete Code End
+
     render() {
+        const {recommendUsers} = this.state;
         const {form: {name, price, owner_id}, onFormChange} = this.props;
         return (
             <form onSubmit={(event) => this.handleSubmit(event)}>
@@ -62,7 +107,8 @@ class BookEditor extends Component {
                     <input type="number" value={price.value || ''} onChange={(event) => onFormChange('price', event.target.value)} />
                 </FormItem>
                 <FormItem label="所有者：" valid={owner_id.valid} error={owner_id.error}>
-                    <input type="number" value={owner_id.value || ''} onChange={(event) => onFormChange('owner_id', event.target.value)} />
+                    {/* <input type="number" value={owner_id.value || ''} onChange={(event) => onFormChange('owner_id', event.target.value)} /> */}
+                    <AutoComplete value={owner_id.value ? owner_id.value + '' : ''} options={recommendUsers} onValueChange={value => this.handleOwnerIdChange(value)} />
                 </FormItem>
                 <br/>
                 <input type="submit" value="提交" />
