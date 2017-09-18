@@ -39,3 +39,9 @@
 ## 7、图书管理加入输入用户ID自动显示
 
 ### features_book_edit_del_push_auto
+
+---
+
+## 8、登录与身份认证
+
+### features_login_auth
