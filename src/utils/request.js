@@ -22,7 +22,7 @@ export default function request(method, url, body) {
             hashHistory.push('/login');
             return Promise.reject('Unauthorized.');
         } else {
-            const token = res.headers.get('access_token');
+            const token = res.headers.get('access-token');
             if (token) {
                 sessionStorage.setItem('access_token', token);
             }
