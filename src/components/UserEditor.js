@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import formProvider from '../utils/formProvider';
 import FormItem from '../components/FormItem';
 import constants from '../common/constants';
+import request from '../utils/request';
 
 class UserEditor extends Component {
 
     componentWillMount() {
-        const {editTarget, setFormValues} = this.props;
+        const { editTarget, setFormValues } = this.props;
         if (editTarget) {
             setFormValues(editTarget);
         }
@@ -14,8 +15,8 @@ class UserEditor extends Component {
     
     handleSubmit(event) {
         event.preventDefault(); // 阻止表单submit事件自动跳转页面的动作
-
-        const {form: {name, age, gender}, formValid, editTarget} = this.props;
+        
+        const { form: { name, age, gender }, formValid, editTarget } = this.props;
         if (!formValid) {
             alert('请填写正确的信息后重试!');
             return;
@@ -30,16 +31,12 @@ class UserEditor extends Component {
             method = 'PUT';
         }
         
-        fetch(apiUrl, {
-            method: method,
+        request(method, apiUrl, {
             body: JSON.stringify({
                 name: name.value,
                 age: age.value,
                 gender: gender.value
-            }),
-            headers: {
-                'Content-Type': 'application/json;charset=utf-8'
-            }
+            })
         }).then((res) => res.json()).then((res) => {
             // 当添加成功时，返回的json对象中应包含一个有效的id字段
             // 所以可以使用res.id来判断添加是否成功
@@ -54,7 +51,7 @@ class UserEditor extends Component {
     }
 
     render () {
-        const {form: {name, age, gender}, onFormChange} = this.props;
+        const { form: { name, age, gender }, onFormChange } = this.props;
         return (
             <form onSubmit={(event) => this.handleSubmit(event)}>
                 <FormItem label="用户名：" valid={name.valid} error={name.error}>

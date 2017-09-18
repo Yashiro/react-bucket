@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import HomeLayout from '../layouts/HomeLayout';
 import BookEditor from '../components/BookEditor';
 import constants from '../common/constants';
+import request from '../utils/request';
+import { get } from "../utils/request";
 
 class BookEdit extends Component {
     constructor(props) {
@@ -13,7 +15,7 @@ class BookEdit extends Component {
 
     componentWillMount() {
         const bookId = this.context.router.params.id;
-        fetch(constants.uri + ':' + constants.port + '/book/' + bookId).then(res => res.json()).then(res => {
+        get(constants.uri + ':' + constants.port + '/book/' + bookId).then(res => res.json()).then(res => {
             this.setState({
                 book: res
             });
@@ -21,7 +23,7 @@ class BookEdit extends Component {
     }
     
     render() {
-        const {book} = this.state;
+        const { book } = this.state;
         return (
             <HomeLayout>
                 {

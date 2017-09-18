@@ -3,6 +3,7 @@ import FormItem from './FormItem';
 import formProvider from '../utils/formProvider';
 import constants from '../common/constants';
 import AutoComplete from '../components/AutoComplete';
+import request, { get } from "../utils/request";
 
 class BookEditor extends Component {
     // AutoComplete Code
@@ -39,16 +40,12 @@ class BookEditor extends Component {
             method = 'PUT';
         }
         
-        fetch(apiUrl, {
-            method: method,
+        request(method, apiUrl, {
             body: JSON.stringify({
                 name: name.value,
                 price: price.value,
                 owner_id: owner_id.value
-            }),
-            headers: {
-                'Content-Type': 'application/json;charset=utf-8'
-            }
+            })
         }).then((res) => res.json()).then((res) => {
             if (res.id) {
                 alert(editType + ' ID=' + res.id + ' 成功!');
@@ -62,7 +59,7 @@ class BookEditor extends Component {
 
     // AutoComplete Code Begin
     getRecommendUsers(partialUserId) {
-        fetch(constants.uri + ':' + constants.port + '/user?id_like=' + partialUserId).then((res) => res.json()).then((res) => {
+        get(constants.uri + ':' + constants.port + '/user?id_like=' + partialUserId).then((res) => res.json()).then((res) => {
             if (res.length === 1 && res[0].id === partialUserId) {
                 return;
             }
@@ -96,8 +93,8 @@ class BookEditor extends Component {
     // AutoComplete Code End
 
     render() {
-        const {recommendUsers} = this.state;
-        const {form: {name, price, owner_id}, onFormChange} = this.props;
+        const { recommendUsers } = this.state;
+        const { form: { name, price, owner_id }, onFormChange } = this.props;
         return (
             <form onSubmit={(event) => this.handleSubmit(event)}>
                 <FormItem label="书名：" valid={name.valid} error={name.error}>

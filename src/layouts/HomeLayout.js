@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 class HomeLayout extends Component {
     render() {
         const {title, children} = this.props;
-
         return (
             <div>
                 <header>

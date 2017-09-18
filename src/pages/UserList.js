@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import HomeLayout from '../layouts/HomeLayout';
 import constants from '../common/constants';
+import request from '../utils/request';
+import { get, del } from "../utils/request";
 
 class UserList extends Component {
     constructor(props) {
@@ -11,7 +13,7 @@ class UserList extends Component {
     }
 
     componentWillMount() {
-        fetch(constants.uri + ':' + constants.port + '/user').then(res => res.json()).then(res => {
+        get(constants.uri + ':' + constants.port + '/user').then(res => res.json()).then(res => {
             this.setState({
                 userList: res
             });
@@ -24,11 +26,8 @@ class UserList extends Component {
 
     handleDel(user) {
         const confirmed = confirm(`确定要删除用户 ${user.name} ?`);
-
         if (confirmed) {
-            fetch(constants.uri + ':' + constants.port + '/user/' + user.id, {
-                method: 'DELETE'
-            }).then(res => res.json()).then(res => {
+            del(constants.uri + ':' + constants.port + '/user/' + user.id).then(res => res.json()).then(res => {
                 this.setState({
                     userList: this.state.userList.filter(item => item.id !== user.id)
                 });
@@ -41,7 +40,7 @@ class UserList extends Component {
     }
     
     render() {
-        const {userList} = this.state;
+        const { userList } = this.state;
         return (
             <HomeLayout title="用户列表">
                 <table>
