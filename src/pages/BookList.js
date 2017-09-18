@@ -12,7 +12,7 @@ class BookList extends React.Component {
     }
 
     componentWillMount() {
-        get(constants.uri + ':' + constants.port + '/book').then(res => res.json()).then(res => {
+        get(constants.uri + ':' + constants.port + '/book').then(res => {
             this.setState({
                 bookList: res
             });

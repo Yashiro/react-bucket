@@ -13,7 +13,7 @@ class UserList extends Component {
     }
 
     componentWillMount() {
-        get(constants.uri + ':' + constants.port + '/user').then(res => res.json()).then(res => {
+        get(constants.uri + ':' + constants.port + '/user').then(res => {
             this.setState({
                 userList: res
             });
