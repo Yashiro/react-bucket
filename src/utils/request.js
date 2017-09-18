@@ -1,4 +1,4 @@
-import { hashHistory } from 'react-router'
+import { hashHistory } from 'react-router';
 
 export default function request(method, url, body) {
     method = method.toUpperCase();
@@ -20,10 +20,10 @@ export default function request(method, url, body) {
     }).then((res) => {
         if (res.status === 401) {
             hashHistory.push('/login');
-            return Promise.reject
+            return Promise.reject('Unauthorized');
         } else {
             const token = res.headers('access_token');
-            if (condition) {
+            if (token) {
                 sessionStorage.setItem('access_token', token);
             }
             return res.json();
