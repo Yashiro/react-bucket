@@ -7,7 +7,7 @@ const middlewares = jsonServer.defaults();
 server.use(jsonServer.bodyParser);
 server.use(middlewares);
 
-server.post('login', function name(req, res, next) {
+server.post('/login', function name(req, res, next) {
     res.header('Access-Control-Expose-Headers', 'access-token');
     const {account, password} = req.body;
     if (account === 'admin' && password === 'admin') {
