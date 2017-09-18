@@ -53,7 +53,7 @@ class Login extends Component {
 
 Login.contextTypes = {
     router: React.PropTypes.object.isRequired
-}
+};
 
 Login = formProvider({
     account: {
