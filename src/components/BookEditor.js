@@ -74,8 +74,8 @@ class BookEditor extends Component {
         });
     }
 
-    timer = 0;
     handleOwnerIdChange(value) {
+        var timer = 0;
         this.props.onFormChange('owner_id', value);
         this.setState({
             recommendUsers: []
