@@ -22,7 +22,7 @@ class UserEdit extends Component {
     
     render() {
         const { user } = this.state;
-        return user ? <UserEditor editTarget={user} /> : <span>s加载中...</span>;
+        return user ? <UserEditor editTarget={user} /> : <span>加载中...</span>;
     }
 }
 
