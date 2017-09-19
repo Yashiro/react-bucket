@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import HomeLayout from '../layouts/HomeLayout';
 import BookEditor from '../components/BookEditor';
 import constants from '../common/constants';
-import request from '../utils/request';
 import { get } from "../utils/request";
 
 class BookEdit extends Component {
@@ -25,11 +23,7 @@ class BookEdit extends Component {
     render() {
         const { book } = this.state;
         return (
-            <HomeLayout>
-                {
-                    book ? <BookEditor editTarget={book} /> : '加载中...'
-                }
-            </HomeLayout>
+            book ? <BookEditor editTarget={book}/> : '加载中...'
         );
     }
 }
