@@ -35,8 +35,8 @@ class BookEditor extends Component {
         }
     }
 
-    handleSubmit(e) {
-        e.preventDefault();
+    handleSubmit(event) {
+        event.preventDefault();
 
         const { form, editTarget } = this.props;
 
@@ -48,11 +48,11 @@ class BookEditor extends Component {
 
             let editType = '添加';
             let apiUrl = constants.uri + ':' + constants.port + '/book';
-            let method = 'post';
+            let method = 'POST';
             if (editTarget) {
                 editType = '编辑';
                 apiUrl += '/' + editTarget.id;
-                method = 'put';
+                method = 'PUT';
             }
 
             request(method, apiUrl, values).then((res) => {
@@ -77,7 +77,7 @@ class BookEditor extends Component {
                     return {
                         text: `${user.id} (${user.name})`,
                         value: user.id
-                    }
+                    };
                 })
             });
         });

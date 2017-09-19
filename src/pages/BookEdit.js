@@ -22,9 +22,7 @@ class BookEdit extends Component {
     
     render() {
         const { book } = this.state;
-        return (
-            book ? <BookEditor editTarget={book}/> : '加载中...'
-        );
+        return book ? <BookEditor editTarget={book}/> : <span>加载中...</span>
     }
 }
 

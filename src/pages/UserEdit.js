@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import HomeLayout from '../layouts/HomeLayout';
 import UserEditor from '../components/UserEditor';
 import constants from '../common/constants';
 import { get } from "../utils/request";
@@ -23,9 +22,7 @@ class UserEdit extends Component {
     
     render() {
         const { user } = this.state;
-        return (
-            user ? <UserEditor editTarget={user} /> : '加载中...'
-        );
+        return user ? <UserEditor editTarget={user} /> : <span>s加载中...</span>;
     }
 }
 

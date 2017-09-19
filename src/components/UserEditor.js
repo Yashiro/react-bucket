@@ -44,7 +44,6 @@ class UserEditor extends Component {
                     if (res.id) {
                         message.success(editType + ' ID=' + res.id + ' 成功!');
                         this.context.router.push('/user/list');
-                        return;
                     } else {
                         message.error(editType + '失败!');
                     }
@@ -60,7 +59,7 @@ class UserEditor extends Component {
         const { getFieldDecorator } = form;
         return (
             <div style={{ width: '400px' }}>
-                <Form onSubmit={(e) => this.handleSubmit(e)}>
+                <Form onSubmit={(event) => this.handleSubmit(event)}>
                     <FormItem label="用户名：" {...formLayout}>
                         {getFieldDecorator('name', {
                             rules: [
