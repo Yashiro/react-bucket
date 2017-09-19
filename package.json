@@ -15,7 +15,6 @@
     "react-router": "^3.0.5"
   },
   "devDependencies": {
-    "@types/antd": "^1.0.0",
     "@types/classnames": "^2.2.3",
     "@types/hammerjs": "^2.0.35",
     "@types/lodash": "^4.14.74",

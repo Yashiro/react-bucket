@@ -1,76 +1,124 @@
 import React, { Component } from 'react';
-import formProvider from '../utils/formProvider';
-import FormItem from '../components/FormItem';
+import { Form, Input, InputNumber, Select, Button, message } from 'antd';
 import constants from '../common/constants';
 import request from '../utils/request';
 
+const FormItem = Form.Item;
+const formLayout = {
+  labelCol: {
+    span: 4
+  },
+  wrapperCol: {
+    span: 16
+  }
+};
 class UserEditor extends Component {
 
-    componentWillMount() {
-        const { editTarget, setFormValues } = this.props;
+    componentDidMount () {
+        // 在componentWillMount里使用form.setFieldsValue无法设置表单的值
+        // 所以在componentDidMount里进行赋值
+        // see: https://github.com/ant-design/ant-design/issues/4802
+        const {editTarget, form} = this.props;
         if (editTarget) {
-            setFormValues(editTarget);
+          form.setFieldsValue(editTarget);
         }
     }
     
     handleSubmit(event) {
         event.preventDefault(); // 阻止表单submit事件自动跳转页面的动作
         
-        const { form: { name, age, gender }, formValid, editTarget } = this.props;
-        if (!formValid) {
-            alert('请填写正确的信息后重试!');
-            return;
-        }
-
-        let editType = '添加';
-        let apiUrl = constants.uri + ':' + constants.port + '/user';
-        let method = 'POST';
-        if (editTarget) {
-            editType = '编辑';
-            apiUrl += '/' + editTarget.id;
-            method = 'PUT';
-        }
-        
-        request(method, apiUrl, {
-            name: name.value,
-            age: age.value,
-            gender: gender.value
-        }).then((res) => {
-            // 当添加成功时，返回的json对象中应包含一个有效的id字段
-            // 所以可以使用res.id来判断添加是否成功
-            if (res.id) {
-                alert(editType + ' ID=' + res.id + ' 成功!');
-                this.context.router.push('/user/list');
-                return;
+        const { form, editTarget } = this.props;
+        form.validateFields((err, values) => {
+            if (!err) {
+                let editType = '添加';
+                let apiUrl = constants.uri + ':' + constants.port + '/user';
+                let method = 'POST';
+                if (editTarget) {
+                    editType = '编辑';
+                    apiUrl += '/' + editTarget.id;
+                    method = 'PUT';
+                }
+                request(method, apiUrl, values).then((res) => {
+                    // 当添加成功时，返回的json对象中应包含一个有效的id字段
+                    // 所以可以使用res.id来判断添加是否成功
+                    if (res.id) {
+                        message.success(editType + ' ID=' + res.id + ' 成功!');
+                        this.context.router.push('/user/list');
+                        return;
+                    } else {
+                        message.error(editType + '失败!');
+                    }
+                }).catch((err) => console.error(err));
             } else {
-                alert(editType + '失败!');
+                message.warn(err);
             }
-        }).catch((err) => console.error(err));
+        });
     }
 
     render () {
-        const { form: { name, age, gender }, onFormChange } = this.props;
+        const { form } = this.props;
+        const { getFieldDecorator } = form;
         return (
-            <form onSubmit={(event) => this.handleSubmit(event)}>
-                <FormItem label="用户名：" valid={name.valid} error={name.error}>
-                    <input type="text" value={name.value} onChange={(event) => onFormChange('name', event.target.value)} />
-                </FormItem>
-                <br/>
-                <FormItem label="年龄：" valid={age.valid} error={age.error}>
-                    <input type="number" value={age.value || ''} onChange={(event) => onFormChange('age', event.target.value)} />
-                </FormItem>
-                <br/>
-                <FormItem label="性别" valid={gender.valid} error={gender.error} >
-                    <select value={gender.value} onChange={(event) => onFormChange('gender', event.target.value)} >
-                        <option value=""></option>
-                        <option value="male">男</option>
-                        <option value="female">女</option>
-                    </select>
-                </FormItem>
-                <br/>
-                <br/>
-                <input type="submit" value="提交" />
-            </form>
+            <div style={{ width: '400px' }}>
+                <Form onSubmit={(e) => this.handleSubmit(e)}>
+                    <FormItem label="用户名：" {...formLayout}>
+                        {getFieldDecorator('name', {
+                            rules: [
+                                {
+                                    required: true,
+                                    message: '请输入用户名'
+                                },
+                                {
+                                    pattern: /^.{1,4}$/,
+                                    message: '用户名最多4个字符'
+                                }
+                            ]
+                        })(
+                            <Input type="text" />
+                            )}
+                    </FormItem>
+
+                    <FormItem label="年龄：" {...formLayout}>
+                        {getFieldDecorator('age', {
+                            rules: [
+                                {
+                                    required: true,
+                                    message: '请输入年龄',
+                                    type: 'number'
+                                },
+                                {
+                                    min: 1,
+                                    max: 100,
+                                    message: '请输入1~100的年龄',
+                                    type: 'number'
+                                }
+                            ]
+                        })(
+                            <InputNumber />
+                            )}
+                    </FormItem>
+
+                    <FormItem label="性别：" {...formLayout}>
+                        {getFieldDecorator('gender', {
+                            rules: [
+                                {
+                                    required: true,
+                                    message: '请选择性别'
+                                }
+                            ]
+                        })(
+                            <Select placeholder="请选择">
+                                <Select.Option value="male">男</Select.Option>
+                                <Select.Option value="female">女</Select.Option>
+                            </Select>
+                            )}
+                    </FormItem>
+
+                    <FormItem wrapperCol={{ ...formLayout.wrapperCol, offset: formLayout.labelCol.span }}>
+                        <Button type="primary" htmlType="submit">提交</Button>
+                    </FormItem>
+                </Form>
+            </div>
         );
     }
 }
@@ -81,44 +129,6 @@ UserEditor.contextTypes = {
     router: React.PropTypes.object.isRequired
 };
 
-UserEditor = formProvider({
-    name: {
-        defaultValue: '',
-        rules: [
-            {
-                pattern: function (value) {
-                    return value.length > 0;
-                },
-                error: '请输入用户名',
-            },
-            {
-                pattern: /^.{1,4}$/,
-                error: '用户名最多4个字符'
-            }
-        ],
-    },
-    age: {
-        defaultValue: 0,
-        rules: [
-            {
-                pattern: function (value) {
-                    return value >= 1 && value <= 100;
-                },
-                error: '请输入1~100的年龄',
-            }
-        ]
-    },
-    gender: {
-        defaultValue: '',
-        rules: [
-            {
-                pattern: function (value) {
-                    return !!value;
-                },
-                error: '请选择性别'
-            }
-        ]
-    }
-})(UserEditor);
+UserEditor = Form.create()(UserEditor);
 
 export default UserEditor;
