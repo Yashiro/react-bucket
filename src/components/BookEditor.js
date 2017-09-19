@@ -164,7 +164,7 @@ class BookEditor extends Component {
 
 BookEditor.contextTypes = {
     router: React.PropTypes.object.isRequired
-}
+};
 
 BookEditor = Form.create()(BookEditor);
 
