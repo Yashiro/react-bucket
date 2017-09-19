@@ -27,7 +27,7 @@ class UserList extends Component {
     handleDel(user) {
         const confirmed = confirm(`确定要删除用户 ${user.name} ?`);
         if (confirmed) {
-            del(constants.uri + ':' + constants.port + '/user/' + user.id).then(res => res.json()).then(res => {
+            del(constants.uri + ':' + constants.port + '/user/' + user.id).then(res => {
                 this.setState({
                     userList: this.state.userList.filter(item => item.id !== user.id)
                 });

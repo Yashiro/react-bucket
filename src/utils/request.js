@@ -12,8 +12,9 @@ export default function request(method, url, body) {
     return fetch(url, {
         method,
         headers: {
-            'Content-Type': 'application/json;charset=utf-8',
-            'Accept': 'application/json;charset=utf-8',
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Accept-Language': 'charset=utf-8',
             'Access-Token': sessionStorage.getItem('access_token') || '' // 从sessionStorage中获取access token
         },
         body

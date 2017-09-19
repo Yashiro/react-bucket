@@ -15,7 +15,7 @@ class BookEdit extends Component {
 
     componentWillMount() {
         const bookId = this.context.router.params.id;
-        get(constants.uri + ':' + constants.port + '/book/' + bookId).then(res => res.json()).then(res => {
+        get(constants.uri + ':' + constants.port + '/book/' + bookId).then(res => {
             this.setState({
                 book: res
             });

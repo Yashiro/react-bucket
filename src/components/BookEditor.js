@@ -41,12 +41,10 @@ class BookEditor extends Component {
         }
         
         request(method, apiUrl, {
-            body: JSON.stringify({
-                name: name.value,
-                price: price.value,
-                owner_id: owner_id.value
-            })
-        }).then((res) => res.json()).then((res) => {
+            name: name.value,
+            price: price.value,
+            owner_id: owner_id.value
+        }).then((res) => {
             if (res.id) {
                 alert(editType + ' ID=' + res.id + ' 成功!');
                 this.context.router.push('/book/list');
@@ -59,7 +57,7 @@ class BookEditor extends Component {
 
     // AutoComplete Code Begin
     getRecommendUsers(partialUserId) {
-        get(constants.uri + ':' + constants.port + '/user?id_like=' + partialUserId).then((res) => res.json()).then((res) => {
+        get(constants.uri + ':' + constants.port + '/user?id_like=' + partialUserId).then((res) => {
             if (res.length === 1 && res[0].id === partialUserId) {
                 return;
             }

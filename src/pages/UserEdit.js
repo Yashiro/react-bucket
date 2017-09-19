@@ -14,7 +14,7 @@ class UserEdit extends Component {
 
     componentWillMount() {
         const userId = this.context.router.params.id;
-        get(constants.uri + ':' + constants.port + '/user/' + userId).then(res => res.json()).then(res => {
+        get(constants.uri + ':' + constants.port + '/user/' + userId).then(res => {
             this.setState({
                 user: res
             });

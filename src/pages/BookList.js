@@ -26,7 +26,7 @@ class BookList extends React.Component {
     handleDel(book) {
         const confirmed = confirm(`确定要删除图书 ${book.name} ?`);
         if (confirmed) {
-            del(constants.uri + ':' + constants.port + '/book/' + book.id).then(res => res.json()).then(res => {
+            del(constants.uri + ':' + constants.port + '/book/' + book.id).then(res => {
                 this.setState({
                     bookList: this.state.bookList.filter(item => item.id !== book.id)
                 });
