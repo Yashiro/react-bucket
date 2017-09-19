@@ -22,6 +22,7 @@ class BookEditor extends Component {
             recommendUsers: []
         };
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleOwnerIdChange = this.handleOwnerIdChange.bind(this);
     }
 
     componentDidMount() {
