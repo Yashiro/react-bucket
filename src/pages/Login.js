@@ -12,7 +12,7 @@ class Login extends Component {
     }
 
     handleSubmit(event) {
-        event.preventDefault
+        event.preventDefault();
         
         const { formValid, form: { account, password } } = this.props;
         if (!formValid) {
