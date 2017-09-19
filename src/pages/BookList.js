@@ -24,17 +24,15 @@ class BookList extends React.Component {
     }
 
     handleDel(book) {
-        if (confirmed) {
-            del(constants.uri + ':' + constants.port + '/book/' + book.id).then(res => {
-                this.setState({
-                    bookList: this.state.bookList.filter(item => item.id !== book.id)
-                });
-                message.success('删除成功');
-            }).catch(err => {
-                console.error(err);
-                message.error('删除失败');
+        del(constants.uri + ':' + constants.port + '/book/' + book.id).then(res => {
+            this.setState({
+                bookList: this.state.bookList.filter(item => item.id !== book.id)
             });
-        }
+            message.success('删除成功');
+        }).catch(err => {
+            console.error(err);
+            message.error('删除失败');
+        });
     }
 
     render() {

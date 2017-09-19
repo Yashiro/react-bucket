@@ -25,17 +25,15 @@ class UserList extends Component {
     }
 
     handleDel(user) {
-        if (confirmed) {
-            del(constants.uri + ':' + constants.port + '/user/' + user.id).then(res => {
-                this.setState({
-                    userList: this.state.userList.filter(item => item.id !== user.id)
-                });
-                message.success('删除成功');
-            }).catch(err => {
-                console.error(err);
-                message.error('删除失败');
+        del(constants.uri + ':' + constants.port + '/user/' + user.id).then(res => {
+            this.setState({
+                userList: this.state.userList.filter(item => item.id !== user.id)
             });
-        }
+            message.success('删除成功');
+        }).catch(err => {
+            console.error(err);
+            message.error('删除失败');
+        });
     }
     
     render() {
@@ -64,7 +62,7 @@ class UserList extends Component {
                         <Button.Group type="ghost">
                             <Button size="small" onClick={() => this.handleEdit(record)}>编辑</Button>
                             <Popconfirm title="确定要删除吗？" onConfirm={() => this.handleDel(record)}>
-                                <Button size="small">编辑</Button>
+                                <Button size="small">删除</Button>
                             </Popconfirm>
                         </Button.Group>
                     );
