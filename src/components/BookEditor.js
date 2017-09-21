@@ -67,7 +67,7 @@ class BookEditor extends Component {
     }
 
     // AutoComplete Code Begin
-    getRecommendUsers(partialUserId) {
+    getRecommendUsers(partialUserId, instance) {
         get(constants.uri + ':' + constants.port + '/user?id_like=' + partialUserId).then((res) => {
             if (res.length === 1 && res[0].id === partialUserId) {
                 return;
@@ -76,14 +76,23 @@ class BookEditor extends Component {
                 recommendUsers: res.map((user) =>{
                     return {
                         text: `${user.id} (${user.name})`,
-                        value: user.id
+                        value: user.id,
+                        instance: user
                     };
                 })
             });
+            if (instance !== undefined) {
+                console.log('getRecommendUsers instance ==>' + instance.name);
+                this.props.form.setFieldsValue({
+                    owner_name: instance.name
+                });
+            }
         });
     }
 
-    handleOwnerIdChange(value) {
+    handleOwnerIdChange(value, instance) {
+        console.log('BookEditor value ==>' + value);
+        console.log('BookEditor instance ==>' + instance);
         var timer = 0;
         this.setState({
             recommendUsers: []
@@ -93,7 +102,7 @@ class BookEditor extends Component {
         }
         if (value) {
             this.timer = setTimeout(() => {
-                this.getRecommendUsers(value);
+                this.getRecommendUsers(value, instance);
                 this.timer = 0;
             }, 200);
         }
@@ -135,6 +144,17 @@ class BookEditor extends Component {
                     })(<InputNumber />)}
                 </FormItem>
 
+                <FormItem label="所有者名：" {...formLayout}>
+                    {getFieldDecorator('owner_name', {
+                        rules: [
+                            {
+                                required: true,
+                                message: '请输入书名'
+                            }
+                        ]
+                    })(<Input type="text" />)}
+                </FormItem>
+
                 <FormItem label="所有者：" {...formLayout}>
                     {getFieldDecorator('owner_id', {
                         rules: [
@@ -154,7 +174,7 @@ class BookEditor extends Component {
                         />
                         )}
                 </FormItem>
-                <FormItem wrapperCol={{ span: formLayout.wrapperCol.span, offset: formLayout.labelCol.span }}>
+                <FormItem wrapperCol={{ span: 100, offset: 20 }}>
                     <Button type="primary" htmlType="submit">提交</Button>
                 </FormItem>
             </Form>

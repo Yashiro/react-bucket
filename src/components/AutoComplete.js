@@ -6,6 +6,10 @@ function getItemValue(item) {
     return item.value || item;
 }
 
+function getItemInstance(item) {
+    return item.instance || item;
+}
+
 class AutoComplete extends React.Component {
     constructor(props) {
         super(props);
@@ -19,10 +23,12 @@ class AutoComplete extends React.Component {
         this.handleLeave = this.handleLeave.bind(this);
     }
 
-    handleChange(value) {
+    handleChange(value, instance) {
         this.setState({ activeItemIndex: -1, displayValue: '' });
         // 原来的onValueChange改为了onChange以适配antd的getFieldDecorator
-        this.props.onChange(value);
+        console.log('value ==>' + value);
+        console.log('instance ==>' + instance);
+        this.props.onChange(value, instance);
     }
 
     handleKeyDown(e) {
@@ -34,7 +40,7 @@ class AutoComplete extends React.Component {
                 if (activeItemIndex >= 0) {
                     e.preventDefault();
                     e.stopPropagation();
-                    this.handleChange(getItemValue(options[activeItemIndex]));
+                    this.handleChange(getItemValue(options[activeItemIndex]), getItemInstance(options[activeItemIndex]));
                 }
                 break;
             }
@@ -90,7 +96,7 @@ class AutoComplete extends React.Component {
         const { value, options } = this.props;
         return (
             <div className={style.wrapper}>
-                <Input value={displayValue || value} onChange={event => this.handleChange(event.target.value)} onKeyDown={this.handleKeyDown} onFocus={() => this.setState({ show: true })} onBlur={() => this.setState({ show: false })} />
+                <Input value={displayValue || value} onChange={event => this.handleChange(event.target.value, event.target.instance)} onKeyDown={this.handleKeyDown} onFocus={() => this.setState({ show: true })} onBlur={() => this.setState({ show: false })} />
                 {show && options.length > 0 && (
                     <ul className={style.options} onMouseLeave={this.handleLeave}>
                         {
@@ -100,7 +106,7 @@ class AutoComplete extends React.Component {
                                         key={index}
                                         className={index === activeItemIndex ? style.active : ''}
                                         onMouseEnter={() => this.handleEnter(index)}
-                                        onClick={() => this.handleChange(getItemValue(item))}
+                                        onClick={() => this.handleChange(getItemValue(item), getItemInstance(item))}
                                     >
                                         {item.text || item}
                                     </li>
