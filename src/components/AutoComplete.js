@@ -31,23 +31,23 @@ class AutoComplete extends React.Component {
         this.props.onChange(value, instance);
     }
 
-    handleKeyDown(e) {
+    handleKeyDown(event) {
         const { activeItemIndex } = this.state;
         const { options } = this.props;
 
-        switch (e.keyCode) {
+        switch (event.keyCode) {
             case 13: {
                 if (activeItemIndex >= 0) {
-                    e.preventDefault();
-                    e.stopPropagation();
+                    event.preventDefault();
+                    event.stopPropagation();
                     this.handleChange(getItemValue(options[activeItemIndex]), getItemInstance(options[activeItemIndex]));
                 }
                 break;
             }
             case 38:
             case 40: {
-                e.preventDefault();
-                this.moveItem(e.keyCode === 38 ? 'up' : 'down');
+                event.preventDefault();
+                this.moveItem(event.keyCode === 38 ? 'up' : 'down');
                 break;
             }
         }
