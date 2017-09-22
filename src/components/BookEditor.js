@@ -67,7 +67,7 @@ class BookEditor extends Component {
     }
 
     // AutoComplete Code Begin
-    getRecommendUsers(partialUserId, instance) {
+    getRecommendUsers(partialUserId, activeItemIndex) {
         get(constants.uri + ':' + constants.port + '/user?id_like=' + partialUserId).then((res) => {
             if (res.length === 1 && res[0].id === partialUserId) {
                 return;
@@ -77,22 +77,22 @@ class BookEditor extends Component {
                     return {
                         text: `${user.id} (${user.name})`,
                         value: user.id,
-                        instance: user
+                        user: user
                     };
                 })
             });
-            if (instance !== undefined) {
-                console.log('getRecommendUsers instance ==>' + instance.name);
+            if (activeItemIndex > -1) {
+                console.log('getRecommendUsers user ==>' + recommendUsers[activeItemIndex].name);
                 this.props.form.setFieldsValue({
-                    owner_name: instance.name
+                    owner_name: user.name
                 });
             }
         });
     }
 
-    handleOwnerIdChange(value, instance) {
+    handleOwnerIdChange(value, activeItemIndex) {
         console.log('BookEditor value ==>' + value);
-        console.log('BookEditor instance ==>' + instance);
+        console.log('BookEditor activeItemIndex ==>' + activeItemIndex);
         var timer = 0;
         this.setState({
             recommendUsers: []
@@ -102,7 +102,7 @@ class BookEditor extends Component {
         }
         if (value) {
             this.timer = setTimeout(() => {
-                this.getRecommendUsers(value, instance);
+                this.getRecommendUsers(value, activeItemIndex);
                 this.timer = 0;
             }, 200);
         }
@@ -144,7 +144,7 @@ class BookEditor extends Component {
                     })(<InputNumber />)}
                 </FormItem>
 
-                <FormItem label="所有者名：" {...formLayout}>
+                <FormItem label="所有名：" {...formLayout}>
                     {getFieldDecorator('owner_name', {
                         rules: [
                             {
