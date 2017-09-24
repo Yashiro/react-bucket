@@ -18,12 +18,10 @@ class AutoComplete extends React.Component {
         this.handleLeave = this.handleLeave.bind(this);
     }
 
-    handleChange(value, activeItemIndex) {
+    handleChange(value) {
         this.setState({ activeItemIndex: -1, displayValue: '' });
         // 原来的onValueChange改为了onChange以适配antd的getFieldDecorator
-        console.log('value ==>' + value);
-        console.log('activeItemIndex ==>' + activeItemIndex);
-        this.props.onChange(value, activeItemIndex);
+        this.props.onChange(value);
     }
 
     handleKeyDown(event) {
@@ -35,7 +33,7 @@ class AutoComplete extends React.Component {
                 if (activeItemIndex >= 0) {
                     event.preventDefault();
                     event.stopPropagation();
-                    this.handleChange(getItemValue(options[activeItemIndex]), activeItemIndex);
+                    this.handleChange(getItemValue(options[activeItemIndex]));
                 }
                 break;
             }
@@ -91,7 +89,7 @@ class AutoComplete extends React.Component {
         const { value, options } = this.props;
         return (
             <div className={style.wrapper}>
-                <Input value={displayValue || value} onChange={event => this.handleChange(event.target.value, activeItemIndex)} onKeyDown={this.handleKeyDown} onFocus={() => this.setState({ show: true })} onBlur={() => this.setState({ show: false })} />
+                <Input value={displayValue || value} onChange={event => this.handleChange(event.target.value)} onKeyDown={this.handleKeyDown} onFocus={() => this.setState({ show: true })} onBlur={() => this.setState({ show: false })} />
                 {show && options.length > 0 && (
                     <ul className={style.options} onMouseLeave={this.handleLeave}>
                         {

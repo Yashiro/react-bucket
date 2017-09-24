@@ -67,7 +67,7 @@ class BookEditor extends Component {
     }
 
     // AutoComplete Code Begin
-    getRecommendUsers(partialUserId, activeItemIndex) {
+    getRecommendUsers(partialUserId) {
         get(constants.uri + ':' + constants.port + '/user?id_like=' + partialUserId).then((res) => {
             if (res.length === 1 && res[0].id === partialUserId) {
                 return;
@@ -76,23 +76,14 @@ class BookEditor extends Component {
                 recommendUsers: res.map((user) =>{
                     return {
                         text: `${user.id} (${user.name})`,
-                        value: user.id,
-                        user: user
+                        value: user.id
                     };
                 })
             });
-            if (activeItemIndex > -1) {
-                console.log('getRecommendUsers user ==>' + recommendUsers[activeItemIndex].name);
-                this.props.form.setFieldsValue({
-                    owner_name: user.name
-                });
-            }
         });
     }
 
-    handleOwnerIdChange(value, activeItemIndex) {
-        console.log('BookEditor value ==>' + value);
-        console.log('BookEditor activeItemIndex ==>' + activeItemIndex);
+    handleOwnerIdChange(value) {
         var timer = 0;
         this.setState({
             recommendUsers: []
@@ -102,7 +93,7 @@ class BookEditor extends Component {
         }
         if (value) {
             this.timer = setTimeout(() => {
-                this.getRecommendUsers(value, activeItemIndex);
+                this.getRecommendUsers(value);
                 this.timer = 0;
             }, 200);
         }
@@ -142,17 +133,6 @@ class BookEditor extends Component {
                             }
                         ]
                     })(<InputNumber />)}
-                </FormItem>
-
-                <FormItem label="所有名：" {...formLayout}>
-                    {getFieldDecorator('owner_name', {
-                        rules: [
-                            {
-                                required: true,
-                                message: '请输入书名'
-                            }
-                        ]
-                    })(<Input type="text" />)}
                 </FormItem>
 
                 <FormItem label="所有者：" {...formLayout}>
