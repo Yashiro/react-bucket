@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Icon, Form, Input, Button, message } from 'antd';
 import { post } from "../utils/request";
 import constants from '../common/constants';
-import style from '../styles/login-page.less';
+import '../styles/login-page.less';
 
 const FormItem = Form.Item;
 class Login extends Component {
@@ -32,9 +32,9 @@ class Login extends Component {
         const { form } = this.props;
         const { getFieldDecorator } = form;
         return (
-            <div className={style.wrapper}>
-                <div className={style.body}>
-                    <header className={style.header}>
+            <div className="wrapper">
+                <div className="body">
+                    <header className="header">
                         ReactManager
                     </header>
 
@@ -68,7 +68,7 @@ class Login extends Component {
                                 )}
                             </FormItem>
 
-                            <Button className={style.btn} type="primary" htmlType="submit">Sign In</Button>
+                            <Button className="btn" type="primary" htmlType="submit">Sign In</Button>
                         </Form>
                     </section>
                 </div>

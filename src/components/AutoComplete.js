@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import { Input } from 'antd';
-import style from '../styles/auto-complete.less';
+import '../styles/auto-complete.less';
 
 function getItemValue(item) {
     return item.value || item;
@@ -88,16 +88,16 @@ class AutoComplete extends React.Component {
         const { show, displayValue, activeItemIndex } = this.state;
         const { value, options } = this.props;
         return (
-            <div className={style.wrapper}>
+            <div>
                 <Input value={displayValue || value} onChange={event => this.handleChange(event.target.value)} onKeyDown={this.handleKeyDown} onFocus={() => this.setState({ show: true })} onBlur={() => this.setState({ show: false })} />
                 {show && options.length > 0 && (
-                    <ul className={style.options} onMouseLeave={this.handleLeave}>
+                    <ul className="options" onMouseLeave={this.handleLeave}>
                         {
                             options.map((item, index) => {
                                 return (
                                     <li
                                         key={index}
-                                        className={index === activeItemIndex ? style.active : ''}
+                                        className={index === activeItemIndex ? 'active' : ''}
                                         onMouseEnter={() => this.handleEnter(index)}
                                         onClick={() => this.handleChange(getItemValue(item), index)}
                                     >

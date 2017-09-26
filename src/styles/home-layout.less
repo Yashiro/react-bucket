@@ -1,35 +1,132 @@
-.main {
-    height: 100vh;
-    padding-top: 50px;
+// Layout
+.ant-layout-sider-collapsed .anticon {  // 放在.github前面原因猜想是渲染。
+    font-size: 20px;
 }
 
-.header {
+.containAll {
     position: absolute;
     top: 0;
-    height: 50px;
-    width: 100%;
-    font-size: 18px;
-    padding: 0 20px;
-    line-height: 50px;
-    background-color: #108ee9;
-    color: #fff;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    .github {
+        position: absolute;
+        top: 20px;
+        left: 14px;
+        font-size: 36px;
+        animation: App-logo-spin infinite 20s linear;
+    }
+    .author {
+        position: absolute;
+        top: 20px;
+        left: 65px;
+        font-size: 24px;
+        font-weight: 600;
+        font-family: "Microsoft YaHei","SimHei"
+    }
+    .white {
+        color: white
+    }
+    .menu {
+        height: 100%;
+        padding-top: 75px;
+    }
+    .switch {
+        position: absolute;
+        bottom: 4%;
+        right: 5%;
+    }
+}
 
-  a {
-    color: inherit;
+.ant-layout-sider-trigger {
+    display: none;
+}
+
+.ant-layout-header {
+    margin-left: 16px;
+}
+
+@keyframes App-logo-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.ant-layout-sider-collapsed .nav-text {
+display: none;
+}
+
+.ant-menu-submenu-vertical > .ant-menu-submenu-title:after { // 对缩放时的menu样式进行处理
+    display: none;
+}
+
+.ant-menu-submenu-vertical .ant-menu-submenu-title span span {
+    display: none;
+}
+
+.ant-layout-sider-collapsed .author {
+    display: none;
+}
+
+
+// Header
+.trigger {
+  font-size: 18px;
+  line-height: 64px;
+  margin-left: -24px;
+  cursor: pointer;
+  transition: color .3s;
+  &:hover {
+    color: #108ee9;
   }
 }
 
-.menu {
-    height: 100%;
-    width: 240px;
-    float: left;
-    background-color: #404040;
+.screenFull {
+  font-size: 14px;
+  cursor: pointer;
+  transition: color .3s;
+  float: right;
+  margin-top: 13px;
+  padding: 10px;
+  &:hover {
+    color: #108ee9;
+  }
 }
 
+.logOut {
+    float: right;
+    width: 100px;
+    margin-top: 8px;
+}
+
+.ant-layout-header {
+  height: 58px!important;
+}
+
+// Content
 .content {
-    height: 100%;
-    padding: 12px;
-    overflow: auto;
-    margin-left: 240px;
-    align-self: stretch;
+    position: relative;
+    margin: 24px 0 0 16px;
+    padding: 24px;
+    background: #fff;
+}
+
+// Bottom
+.bottom {
+    height: 32px;
+    text-align: center;
+    display: inline-block;
+}
+
+.text {
+    margin-top: -12px;
+    .stay {
+        margin-left: 50px;
+        font-size: 13px;
+    }
+}
+
+.time {
+    color: #FF4081;
+    font-weight: bold;
+    font-size: 15px;
 }

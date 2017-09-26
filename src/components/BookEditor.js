@@ -123,16 +123,14 @@ class BookEditor extends Component {
                             {
                                 required: true,
                                 message: '请输入价格',
-                                type: 'number'
                             },
                             {
                                 min: 1,
                                 max: 99999,
-                                type: 'number',
                                 message: '请输入1~99999的数字'
                             }
                         ]
-                    })(<InputNumber />)}
+                    })(<Input type="number" />)}
                 </FormItem>
 
                 <FormItem label="所有者：" {...formLayout}>
@@ -152,8 +150,9 @@ class BookEditor extends Component {
                             options={recommendUsers}
                             onChange={this.handleOwnerIdChange}
                         />
-                        )}
+                    )}
                 </FormItem>
+                
                 <FormItem wrapperCol={{ span: 100, offset: 20 }}>
                     <Button type="primary" htmlType="submit">提交</Button>
                 </FormItem>

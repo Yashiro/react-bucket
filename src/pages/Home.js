@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import style from '../styles/home-page.less';
+import '../styles/home-page.less';
 
 class Home extends Component {
     render() {
         return (
-            <div className={style.welcome}>
+            <div className="welcome">
                 Welcome
             </div>
         );
