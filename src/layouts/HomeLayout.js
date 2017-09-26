@@ -61,7 +61,13 @@ class HomeLayout extends Component {
                     {this.state.theme === 'light' ? <a href="" target='_blank' rel='noopener noreferrer'><Icon type="github" className="github" /></a> :
                         <a href="" target='_blank' rel='noopener noreferrer'><Icon type="github" className="github white" /></a> }
                     { this.state.theme === 'light' ? <span className="author">Andy</span> : <span className="author white">Andy</span> }
-                    <Menu theme={this.state.theme} onClick={this.handleClick} defaultOpenKeys={['']} selectedKeys={[this.state.current]} className="menu" mode={this.state.mode}>
+                        <Menu theme={this.state.theme} onClick={this.handleClick} defaultOpenKeys={['']} selectedKeys={[this.state.current]} className="menu" mode={this.state.mode}>
+                            <Menu.Item key="/">
+                            <Link to="/">
+                            <Icon type="home" /><span className="nav-text">首页</span>
+                            </Link>
+                        </Menu.Item>
+
                         <SubMenu key="user" title={<span><Icon type="user" /><span>用户管理</span></span>}>
                             <MenuItem key="user-list">
                                 <Link to="/user/list">用户列表</Link>
@@ -91,8 +97,6 @@ class HomeLayout extends Component {
                 </Sider>
                 <Layout>
                     <Header style={{ background: '#fff'}} toggle={this.toggle} collapsed={this.state.collapsed} clear={this.clear}>
-                        <span style={{color:'#fff', paddingLeft:'2%', fontSize:'1.4em'}}>
-                        </span>
                         <Icon className="trigger" type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'} onClick={this.toggle} style={{cursor: 'pointer'}} />
                         <span style={{paddingLeft:'2%', fontSize:'1.4em'}}>Information Management System</span>
                         <Menu mode="horizontal" className="logOut" onClick={this.clear}>
