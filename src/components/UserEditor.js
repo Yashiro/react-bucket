@@ -72,9 +72,7 @@ class UserEditor extends Component {
                                     message: '用户名最多4个字符'
                                 }
                             ]
-                        })(
-                            <Input type="text" />
-                            )}
+                        })(<Input type="text" />)}
                     </FormItem>
 
                     <FormItem label="年龄：" {...formLayout}>
@@ -82,19 +80,15 @@ class UserEditor extends Component {
                             rules: [
                                 {
                                     required: true,
-                                    message: '请输入年龄',
-                                    type: 'number'
+                                    message: '请输入年龄'
                                 },
                                 {
                                     min: 1,
                                     max: 100,
-                                    message: '请输入1~100的年龄',
-                                    type: 'number'
+                                    message: '请输入1~100的年龄'
                                 }
                             ]
-                        })(
-                            <InputNumber />
-                            )}
+                        })(<Input type="number" />)}
                     </FormItem>
 
                     <FormItem label="性别：" {...formLayout}>
@@ -110,7 +104,7 @@ class UserEditor extends Component {
                                 <Select.Option value="male">男</Select.Option>
                                 <Select.Option value="female">女</Select.Option>
                             </Select>
-                            )}
+                        )}
                     </FormItem>
 
                     <FormItem wrapperCol={{ ...formLayout.wrapperCol, offset: formLayout.labelCol.span }}>

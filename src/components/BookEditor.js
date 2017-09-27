@@ -122,7 +122,7 @@ class BookEditor extends Component {
                         rules: [
                             {
                                 required: true,
-                                message: '请输入价格',
+                                message: '请输入价格'
                             },
                             {
                                 min: 1,
