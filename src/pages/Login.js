@@ -35,7 +35,7 @@ class Login extends Component {
             <div className="wrapper">
                 <div className="body">
                     <header className="header">
-                        ReactManager
+                        React Manager
                     </header>
 
                     <section>
