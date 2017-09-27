@@ -83,8 +83,8 @@ class BookEditor extends Component {
         });
     }
 
+    timer = 0;
     handleOwnerIdChange(value) {
-        var timer = 0;
         this.setState({
             recommendUsers: []
         });
