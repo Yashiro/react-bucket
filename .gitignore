@@ -42,3 +42,4 @@ npm-debug.log*
 
 deploy.sh
 
+**/launch.json
