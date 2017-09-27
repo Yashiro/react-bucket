@@ -58,9 +58,9 @@ class HomeLayout extends Component {
         return (
             <Layout className="containAll">
                 <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse} className="leftMenu">
-                    {this.state.theme === 'light' ? <a href="" target='_blank' rel='noopener noreferrer'><Icon type="github" className="github" /></a> :
-                        <a href="" target='_blank' rel='noopener noreferrer'><Icon type="github" className="github white" /></a> }
-                    { this.state.theme === 'light' ? <span className="author">Andy</span> : <span className="author white">Andy</span> }
+                        {this.state.theme === 'light' ? <a href="" target='_blank' rel='noopener noreferrer'><Icon type="github" className="github" /></a> :
+                            <a href="" target='_blank' rel='noopener noreferrer'><Icon type="github" className="github white" /></a> }
+                        { this.state.theme === 'light' ? <span className="author">Andy</span> : <span className="author white">Andy</span> }
                         <Menu theme={this.state.theme} onClick={this.handleClick} defaultOpenKeys={['']} selectedKeys={[this.state.current]} className="menu" mode={this.state.mode}>
                             <Menu.Item key="/">
                             <Link to="/">

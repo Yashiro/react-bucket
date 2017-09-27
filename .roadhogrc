@@ -1,7 +1,8 @@
 {
   "disableCSSModules": true,
   "theme": {
-    "@primary-color": "#1DA57A"
+    "@primary-color": "#1DA57A",
+    "@info-color": "#1DA57A"
   },
   "extraBabelPlugins": [
     ["import", {
