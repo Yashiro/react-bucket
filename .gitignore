@@ -5,6 +5,7 @@
 package-lock.json
 yarn.lock
 .react-playground
+**/launch.json
 
 # production
 /dist
@@ -41,5 +42,3 @@ npm-debug.log*
 **/gen-java
 
 deploy.sh
-
-**/launch.json
