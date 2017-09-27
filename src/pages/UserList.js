@@ -70,7 +70,7 @@ class UserList extends Component {
             }
         ];
         return (
-            <Table columns={columns} dataSource={userList} rowKey={row => row.id}/>
+            <Table columns={columns} dataSource={userList} rowKey={row => row.id} scroll={{y: 385 }} />
         );
     }
 }

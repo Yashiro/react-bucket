@@ -68,7 +68,7 @@ class BookList extends React.Component {
             }
         ];
         return (
-            <Table columns={columns} dataSource={bookList} rowKey={row => row.id}/>
+            <Table columns={columns} dataSource={bookList} rowKey={row => row.id} scroll={{y: 385 }} />
         );
     }
 }

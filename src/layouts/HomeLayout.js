@@ -105,7 +105,7 @@ class HomeLayout extends Component {
                             </SubMenu>
                         </Menu>
                     </Header>
-                    <Content className="content">
+                    <Content className="content" style={{ paddingTop: 43 }}>
                         {children}
                     </Content>
                     <Footer className="bottom animated bounceInLeft">
