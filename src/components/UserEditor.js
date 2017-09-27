@@ -107,7 +107,7 @@ class UserEditor extends Component {
                         )}
                     </FormItem>
 
-                    <FormItem wrapperCol={{ ...formLayout.wrapperCol, offset: formLayout.labelCol.span }}>
+                    <FormItem wrapperCol={{span: 100, offset: 20 }}>
                         <Button type="primary" htmlType="submit">提交</Button>
                     </FormItem>
                 </Form>
