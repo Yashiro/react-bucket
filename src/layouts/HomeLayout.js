@@ -110,9 +110,10 @@ class HomeLayout extends Component {
                     </Content>
                     <Footer className="bottom animated bounceInLeft">
                         <div className="text">
-                        <div>
-                            <span className="me">© 2017 Andy</span>
-                            <span className="stay">你已在此逗留了 <span className="time">{this.state.timer}</span> 秒</span></div>
+                            <div>
+                                <span className="me">© 2017 Andy</span>
+                                <span className="stay">你已在此逗留了 <span className="time">{this.state.timer}</span> 秒</span>
+                            </div>
                         </div> 
                     </Footer>
                 </Layout>
