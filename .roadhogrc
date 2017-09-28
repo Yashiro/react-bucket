@@ -10,5 +10,6 @@
       "libraryDirectory": "lib",
       "style": true
     }]
-  ]
+  ],
+  "devtool": "source-map"
 }
