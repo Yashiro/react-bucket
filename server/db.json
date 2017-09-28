@@ -25,12 +25,6 @@
       "name": "Java从入门到放弃",
       "price": 1990,
       "owner_id": 10001
-    },
-    {
-      "name": "asd",
-      "price": "1111111",
-      "owner_id": 10002,
-      "id": 10002
     }
   ]
 }
