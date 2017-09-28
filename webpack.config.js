@@ -4,9 +4,8 @@ module.exports = function (webpackConfig, env) {
   webpackConfig.output.devtoolModuleFilenameTemplate = info => path.resolve(info.absoluteResourcePath).replace(/\\/g, '/');
 
   webpackConfig.module.rules.forEach(function(loader, index) {
-    if (index >= 2) {
-      console.error(loader.use);
-      return;
+    if (!loader.exclude) {
+      console.log("Input Success")
       if (typeof loader.test === 'function' && loader.test.toString().indexOf('\\.less$') > -1) {
         loader.include = /node_modules/;
         loader.test = /\.less$/;
