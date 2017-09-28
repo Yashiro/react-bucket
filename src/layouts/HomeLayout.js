@@ -97,8 +97,8 @@ class HomeLayout extends Component {
                 </Sider>
                 <Layout>
                     <Header style={{ background: '#fff'}} toggle={this.toggle} collapsed={this.state.collapsed} clear={this.clear}>
-                        <Icon className="trigger" type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'} onClick={this.toggle} style={{cursor: 'pointer'}} />
-                        <span style={{paddingLeft:'2%', fontSize:'1.4em'}}>Information Management System</span>
+                        <Icon className="trigger" type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'} onClick={this.toggle} style={{ cursor: 'pointer' }} />
+                        <span style={{ color: '#1DA57A', paddingLeft: '2%', fontSize: '1.4em', fontWeight: 'bold' }}>Information Management System</span>
                         <Menu mode="horizontal" className="logOut" onClick={this.clear}>
                             <SubMenu title={<span><Icon type="user" />{ this.state.username }</span>} >
                                 <Menu.Item key="logOut"><Link to="/login" >退出</Link></Menu.Item>
