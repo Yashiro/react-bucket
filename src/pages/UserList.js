@@ -41,18 +41,22 @@ class UserList extends Component {
         const columns = [
             {
                 title: '用户ID',
+                width: 200,
                 dataIndex: 'id'
             },
             {
                 title: '用户名',
+                width: 200,
                 dataIndex: 'name'
             },
             {
                 title: '性别',
+                width: 200,
                 dataIndex: 'gender'
             },
             {
                 title: '年龄',
+                width: 200,
                 dataIndex: 'age'
             },
             {

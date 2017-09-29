@@ -40,19 +40,23 @@ class BookList extends React.Component {
         const columns = [
             {
                 title: '图书ID',
+                width: 200,
                 dataIndex: 'id'
             },
             {
                 title: '书名',
+                width: 200,
                 dataIndex: 'name'
             },
             {
                 title: '价格',
+                width: 200,
                 dataIndex: 'price',
                 render: (text, record) => <span>&yen;{record.price / 100}</span>
             },
             {
                 title: '所有者ID',
+                width: 200,
                 dataIndex: 'owner_id'
             },
             {
