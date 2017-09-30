@@ -38,7 +38,7 @@ class Login extends Component {
                         React Manager
                     </header>
 
-                    <section>
+                    <div className="form">
                         <Form onSubmit={this.handleSubmit}>
                             <FormItem>
                                 {getFieldDecorator('account', {
@@ -70,7 +70,7 @@ class Login extends Component {
 
                             <Button className="btn" type="primary" htmlType="submit">Sign In</Button>
                         </Form>
-                    </section>
+                    </div>
                 </div>
             </div>
         );
